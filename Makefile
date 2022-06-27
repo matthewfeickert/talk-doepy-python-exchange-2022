@@ -11,7 +11,7 @@ LATEX = pdflatex
 
 BIBTEX = bibtex
 
-default: slides
+default: document
 
 figures: $(figure_list)
 
@@ -26,6 +26,8 @@ figures/%.pdf: figures/%.tex
 
 slides: figures
 	latexmk -$(LATEX) -shell-escape -logfilewarnings -halt-on-error $(FILENAME)
+
+document: slides
 	rsync $(FILENAME).pdf $(output_file)
 	rsync $(FILENAME).pdf $(FILENAME)_2022-06-29.pdf
 
