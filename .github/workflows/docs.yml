@@ -1,0 +1,38 @@
+name: Deploy build
+
+on:
+  push:
+    branches:
+    - main
+    tags:
+    - v*
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Compile LaTeX documents
+      uses: xu-cheng/texlive-action/full@v1
+      with:
+        run: |
+          apk add make
+          make slides
+
+    - name: List directory contents
+      run: ls -lhtra
+
+    - name: Setup build for deployment
+      run: |
+        mkdir -p docs/_build
+        cp main.pdf docs/_build/2022-06-29.pdf
+
+    - name: Deploy build to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: docs/_build
+        force_orphan: true
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
