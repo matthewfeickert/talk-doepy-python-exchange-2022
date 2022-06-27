@@ -1,0 +1,17 @@
+name: CI
+
+on:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Compile LaTeX documents
+      uses: xu-cheng/texlive-action/full@v1
+      with:
+        run: |
+          apk add make
+          make document
