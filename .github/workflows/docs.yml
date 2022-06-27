@@ -18,13 +18,16 @@ jobs:
       with:
         run: |
           apk add make
-          make document
+          make
+
     - name: List directory contents
       run: ls -lhtra
+
     - name: Setup build for deployment
       run: |
         mkdir -p docs/_build
         cp main.pdf docs/_build/2022-06-29.pdf
+
     - name: Deploy build to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
