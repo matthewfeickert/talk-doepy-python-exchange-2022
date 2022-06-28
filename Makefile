@@ -31,6 +31,9 @@ document: slides
 	rsync $(FILENAME).pdf $(output_file)
 	rsync $(FILENAME).pdf $(FILENAME)_2022-06-29.pdf
 
+ci:
+	latexmk -$(LATEX) -shell-escape -logfilewarnings -halt-on-error $(FILENAME)
+
 clean:
 	rm -f *.aux *.bbl *.blg *.dvi *.idx *.lof *.log *.lot *.toc \
 		*.xdy *.nav *.out *.snm *.vrb *.mp \
