@@ -39,16 +39,16 @@
 \vspace{0.25 cm}
 \textcolor{darkblue}{Source: ``\mintinline{python}{import XYZ}'' matches in GitHub repos for users who fork CMSSW.}
 
-% If we take a more detailed view of this survey, we can see that this increase in people writing more Python is also
-% strongly tied with the use of scientific Python packages in the HEP community, as we see with numpy, matplotlib, pandas,
-% and tensorflow.
-% This is also tied with the rise of Scikit-HEP which got started around 2017 and IRIS-HEP late 2018 / early 2019, which you
-% can see also with the appearance of tooling that came out of IRIS-HEP and Scikit-HEP like uproot and awkward Array.
 \vspace{0.2 cm}
 \includegraphics[width=\linewidth]{github-language-fullstudy-for-review.pdf}
 \textcolor{darkblue}{\tiny (CMSSW is the CMS experiment's ``offline'' software framework)}
 \end{frame}
 
+% If we take a more detailed view of this survey, we can see that this increase in people writing more Python is also
+% strongly tied with the use of scientific Python packages in the HEP community, as we see with numpy, matplotlib, pandas,
+% and tensorflow.
+% This is also tied with the rise of Scikit-HEP which got started around 2017 and IRIS-HEP late 2018 / early 2019, which you
+% can see also with the appearance of tooling that came out of IRIS-HEP and Scikit-HEP like uproot and awkward Array.
 \begin{frame}{Explosion of Scientific Python (NumPy, etc.) use recent since 2018}
 \vspace{0.25 cm}
 \textcolor{darkblue}{Source: ``\mintinline{python}{import XYZ}'' matches in GitHub repos for users who fork CMSSW.}
@@ -57,6 +57,11 @@
 \includegraphics[width=\linewidth]{github-package-fullstudy-for-review.pdf}
 \end{frame}
 
+% These observations on CMSSW users also track with what we see globally in terms of `pip install`s of Scikit-HEP packages
+% from PyPI around the same time. As Scikit-HEP was starting out and then receiving support and community awareness through
+% IRIS-HEP we can see that the number of monthly pip installs of Scikit-HEP packages exploded.
+% Here also we're looking at installs from MacOS and Windows OSes, so batch jobs on HTC systems and Linux CI jobs are
+% being excluded. We're still picking up CI jobs, but there are less.
 \begin{frame}{Growth tightly coupled to the rise of Scikit-HEP supported by IRIS-HEP}
 \vspace{0.25 cm}
 \textcolor{darkblue}{Source: ``\mintinline{bash}{pip install XYZ}'' download rate for MacOS/Windows (no batch jobs).}
@@ -65,6 +70,12 @@
 \includegraphics[width=\linewidth]{pip-macwin-scikithep-log-combined.pdf}
 \end{frame}
 
+% If we again get more granular, we can see that the reason isn't just people using more tools that already exist, but that
+% MORE TOOLS EXIST.
+% This laundry list on the side are projects that are from Scikit-HEP, IRIS-HEP, and IRIS-HEP affiliated friends and as the
+% ecosystem of libraries grows to meet community needs we can see that the adoption of these tools across the board grows.
+% There are of course related effects given that some tools are dependencies of others, but as a simplification at a higher
+% level view this is what is happening.
 \begin{frame}{Growth tightly coupled to the rise of Scikit-HEP supported by IRIS-HEP}
 \vspace{0.25 cm}
 \textcolor{darkblue}{Source: ``\mintinline{bash}{pip install XYZ}'' download rate for MacOS/Windows (no batch jobs).}
@@ -73,6 +84,10 @@
 \includegraphics[width=\linewidth]{pip-macwin-scikithep-log-by-package.pdf}
 \end{frame}
 
+% This picture is probably very familiar to most of you.
+% Here we see a "shell" view of the PyData ecosystem as viewed by Jake VanderPlas back in 2017.
+% It shows hierarchies of the scientific Python stack, where as you move from inner shells to outer shells
+% you move from broad tools and technologies to more specialized tools that enable tackling specific problems.
 \begin{frame}{Ecosystems}
 \vspace{0.25 cm}
 \begin{center}
@@ -87,10 +102,12 @@
 \end{figure}
 \end{frame}
 
+% In the particle physics world, Scikit-HEP and IRIS-HEP are trying to do the same thing.
+% So this is what a 2022 view of the "PyHEP ecosystem" might look like.
 \begin{frame}{Pythonic ecosystem for particle physics}
 \vspace{0.25 cm}
 \begin{center}
-    {\small Working view of a PyHEP ecosystem (Scikit-HEP and IRIS-HEP supported projects)}
+    {\small Working view of a \href{https://hepsoftwarefoundation.org/workinggroups/pyhep.html}{PyHEP ecosystem} (Scikit-HEP and IRIS-HEP supported projects)}
 \end{center}
 
 % \vspace{0.1 cm}
@@ -101,6 +118,20 @@
 \end{figure}
 \end{frame}
 
+% As these are tools that are probably not familiar with you, let's step through it a bit.
+% 1. In the inner shell we have basically the first 3 shell of the PyData ecosystem. Tools that
+% are not HEP specific but that we have core dependencies on.
+% 2. The next shell are tools that aren't fundamentally about particle physics (histogramming, jagged data,
+% generalized statistical procedures) but didn't exist yet and were necessary to create.
+% 3. Now we move to HEP specific foundations: being able to perform HEP style analysis workflows, read and write
+% HEP specific data formats, 4-vector manipulations
+% 4. Then we move to implementations of specific HEP problems that are very common: Performing binned maximum likelihood
+% fits with physics aware uncertainties, performing common analysis cross checks and visualizations, and making LHC collaboration
+% publication style read plots.
+% 5. Finally we move out to particle physics specific algorithms and techniques (jet clustering approaches and jet variables, interacting
+% with physics simulators) and packaged visualization tools (uproot-browser)
+% We have worked to design an interoperable ecosystem of tools that allow for people to build analyses coherently.
+% Jim will now walk us through some case studies of what that looks like.
 \begin{frame}{Built with intentionality and interoperability}
   \begin{columns}
     \column{0.45\textwidth}
