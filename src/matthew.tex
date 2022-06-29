@@ -25,11 +25,25 @@
   \end{columns}
 \end{frame}
 
-% shows the rapid adoption of Python for analysis in recent years
+% Given that we're at the "Python exchange" we're not going to do a "Why Python" slide
+% as we don't need to convert the choir, but what we can do it tell you a bit about how our
+% community went from being C++ only to a 2 language C++ and Python community.
+% This plot shows a survey that Jim Pivarski did of **users** of the code in the CMS experiment's (one of the main experiments at the
+% Large Hadron Collider) software framework monorepo "CMSSW" which is publicly available on GitHub.
+% He cross referenced the people who forked CMSSW (so filtering on particle physicists on CMS) and then searched _their_
+% repositories for "import" statements in files.
+% As we can see, before 2018 most of these imports were coming from C++.
+% However, around 2018 we see a change where Python is becoming the dominant form of code that is actually being written
+% by these users (both as scripts and in Jupyter).
 \begin{frame}{Rapid rise of Python for analysis in HEP}
 \vspace{0.25 cm}
 \textcolor{darkblue}{Source: ``\mintinline{python}{import XYZ}'' matches in GitHub repos for users who fork CMSSW.}
 
+% If we take a more detailed view of this survey, we can see that this increase in people writing more Python is also
+% strongly tied with the use of scientific Python packages in the HEP community, as we see with numpy, matplotlib, pandas,
+% and tensorflow.
+% This is also tied with the rise of Scikit-HEP which got started around 2017 and IRIS-HEP late 2018 / early 2019, which you
+% can see also with the appearance of tooling that came out of IRIS-HEP and Scikit-HEP like uproot and awkward Array.
 \vspace{0.2 cm}
 \includegraphics[width=\linewidth]{github-language-fullstudy-for-review.pdf}
 \textcolor{darkblue}{\tiny (CMSSW is the CMS experiment's ``offline'' software framework)}
