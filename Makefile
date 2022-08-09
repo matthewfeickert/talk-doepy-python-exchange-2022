@@ -6,8 +6,8 @@ output_file = draft_$(date).pdf
 figure_src = $(wildcard figures/*.svg figures/*/*.svg figures/*.tex figures/*/*.tex)
 figure_list = $(patsubst %.svg,%.pdf,$(patsubst %.tex,%.pdf,$(figure_src)))
 
-# LATEX = lualatex
-LATEX = pdflatex
+LATEX = lualatex
+# LATEX = pdflatex
 
 BIBTEX = bibtex
 
